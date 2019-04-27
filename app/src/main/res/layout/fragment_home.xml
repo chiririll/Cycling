@@ -24,12 +24,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="24"
+                android:text="0"
                 android:textAlignment="center"
                 android:textSize="100sp" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/now_temperature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="14"
+                    android:text="0"
                     android:textSize="36sp" />
 
                 <TextView
@@ -89,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="41"
+                    android:text="0"
                     android:textSize="36sp" />
 
                 <TextView
@@ -130,7 +130,7 @@
                 android:id="@+id/nowDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="100"
+                android:text="0"
                 android:textSize="36dp" />
 
             <TextView
@@ -172,7 +172,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:layout_weight="1"
         android:orientation="horizontal">
 
         <Button
@@ -191,4 +190,10 @@
             android:text="@string/pause"
             android:textSize="24sp" />
     </LinearLayout>
+
+    <fragment
+        android:name="com.sstive39.cycling.WeatherFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_weather" />
 </LinearLayout>
