@@ -7,6 +7,30 @@
     <string name="title_scores">Рекорды</string>
     <string name="title_settings">Настройки</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Units -->
+    <string name="km_h">км/ч</string>
+    <string name="km">км</string>
+    <string name="min_km">мин/км</string>
+    <string name="deg_celsius">&#176;C</string>
+    <string name="m_s">м/с</string>
+    <string name="pressure_unit">мм рт.ст.</string>
+    <string name="percent">%</string>
+    <string name="hour">ч</string>
+    <string name="minute">мин</string>
+    <string name="second">с</string>
+
+    <!-- Values -->
+    <string name="speed">Скорость</string>>
+    <string name="average_speed">Средняя скорость</string>
+    <string name="max_speed">Максимальная скорость</string>
+    <string name="distance">Расстояние</string>
+    <string name="pace">Темп</string>
+    <string name="time">Длительность</string>
+
+    <!-- Buttons -->
+    <string name="start">Старт</string>
+    <string name="stop">Стоп</string>
+    <string name="pause">Пауза</string>
+    <string name="resume">Продолжить</string>
+
 </resources>
