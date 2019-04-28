@@ -33,7 +33,7 @@
     <string name="pause">Пауза</string>
     <string name="resume">Продолжить</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Dates -->
+    <string name="now">Сейчас</string>
 
 </resources>

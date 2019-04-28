@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WeatherFragment">
@@ -22,31 +22,37 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/weather_image"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/ic_dashboard_black_24dp"
-                app:srcCompat="@drawable/ic_wb_sunny_black_24dp" />
+                app:srcCompat="@drawable/ic_weather_038_cloudy_3" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/now_temperature_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/ic_weather_043_warm" />
 
                 <TextView
                     android:id="@+id/now_temperature"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="22"
                     android:textAlignment="textEnd"
                     android:textSize="36sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/now_temperature_unit"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="@string/deg_celsius"
                     android:textAlignment="textStart"
                     android:textSize="36sp" />
@@ -66,57 +72,122 @@
                 android:layout_marginBottom="10dp">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/now_humidity_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_dashboard_black_24dp" />
+                    app:srcCompat="@drawable/ic_weather_025_humidity" />
 
                 <TextView
-                    android:id="@+id/nowASpeed"
+                    android:id="@+id/now_humidity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="0"
+                    android:text="100"
+                    android:textAlignment="textEnd"
                     android:textSize="36sp" />
 
                 <TextView
+                    android:id="@+id/now_humidity_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:gravity="center_vertical"
-                    android:text="@string/km_h"
+                    android:text="@string/percent"
                     android:textSize="36sp" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/now_pressure_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_star_black_24dp" />
+                    app:srcCompat="@drawable/ic_weather_030_wind" />
 
                 <TextView
-                    android:id="@+id/nowMaxSpeed"
+                    android:id="@+id/now_pressure"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="0"
+                    android:text="760"
+                    android:textAlignment="textEnd"
                     android:textSize="36sp" />
 
                 <TextView
+                    android:id="@+id/now_pressure_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:gravity="center_vertical"
-                    android:text="@string/km_h"
+                    android:text="@string/pressure_unit"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/now_wind_speed_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/ic_weather_010_windy" />
+
+                <TextView
+                    android:id="@+id/now_wind_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="20"
+                    android:textAlignment="textEnd"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/now_wind_speed_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/m_s"
                     android:textSize="36sp" />
             </TableRow>
+
         </TableLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_prev_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:text="@string/now"
+            android:textAlignment="center"
+            android:textSize="36sp" />
+
+        <ImageButton
+            android:id="@+id/btn_next_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+    </LinearLayout>
+
 </LinearLayout>

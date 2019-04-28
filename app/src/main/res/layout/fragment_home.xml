@@ -50,14 +50,14 @@
                 android:layout_marginBottom="10dp">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/humidity_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_dashboard_black_24dp" />
+                    app:srcCompat="@drawable/ic_speed" />
 
                 <TextView
-                    android:id="@+id/nowASpeed"
+                    android:id="@+id/now_humidity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -78,14 +78,14 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/pressure_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_star_black_24dp" />
+                    app:srcCompat="@drawable/ic_fast" />
 
                 <TextView
-                    android:id="@+id/nowMaxSpeed"
+                    android:id="@+id/now_pressure"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -124,14 +124,14 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_dashboard_black_24dp" />
+                app:srcCompat="@drawable/ic_distance" />
 
             <TextView
                 android:id="@+id/nowDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="0"
-                android:textSize="36dp" />
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -155,7 +155,7 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
                 android:src="@mipmap/ic_launcher_round"
-                app:srcCompat="@drawable/ic_home_black_24dp" />
+                app:srcCompat="@drawable/ic_time" />
 
             <TextView
                 android:id="@+id/nowTime"
@@ -192,8 +192,11 @@
     </LinearLayout>
 
     <fragment
+        android:id="@+id/weather"
         android:name="com.sstive39.cycling.WeatherFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         tools:layout="@layout/fragment_weather" />
+
 </LinearLayout>
