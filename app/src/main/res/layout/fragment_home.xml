@@ -179,7 +179,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/stop"
+            android:background="@color/colorBtnStart"
+            android:text="@string/start"
+            android:textColor="@color/colorBtnText"
             android:textSize="24sp" />
 
         <Button
@@ -187,8 +189,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/colorBtnPause"
             android:text="@string/pause"
-            android:textSize="24sp" />
+            android:textColor="@color/colorBtnText"
+            android:textSize="24sp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <fragment

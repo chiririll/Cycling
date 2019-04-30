@@ -3,4 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- Buttons travel -->
+    <color name="colorBtnText">#FFFFFF</color>
+    <color name="colorBtnStart">#8BC34A</color>
+    <color name="colorBtnStop">#E91E1E</color>
+    <color name="colorBtnPause">#FFEB3B</color>
+    <color name="colorBtnResume">#FF9800</color>
 </resources>

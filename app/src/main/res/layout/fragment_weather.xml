@@ -75,6 +75,7 @@
                     android:id="@+id/now_humidity_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
                     app:srcCompat="@drawable/ic_weather_025_humidity" />
 
                 <TextView
@@ -83,7 +84,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="100"
-                    android:textAlignment="textEnd"
+                    android:textAlignment="center"
                     android:textSize="36sp" />
 
                 <TextView
@@ -105,6 +106,7 @@
                     android:id="@+id/now_pressure_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
                     app:srcCompat="@drawable/ic_weather_030_wind" />
 
                 <TextView
@@ -113,7 +115,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="760"
-                    android:textAlignment="textEnd"
+                    android:textAlignment="center"
                     android:textSize="36sp" />
 
                 <TextView
@@ -135,6 +137,7 @@
                     android:id="@+id/now_wind_speed_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
                     app:srcCompat="@drawable/ic_weather_010_windy" />
 
                 <TextView
@@ -143,7 +146,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="20"
-                    android:textAlignment="textEnd"
+                    android:textAlignment="center"
                     android:textSize="36sp" />
 
                 <TextView
