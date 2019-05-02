@@ -197,11 +197,11 @@
     </LinearLayout>
 
     <fragment
-        android:id="@+id/weather"
+        android:id="@+id/weatherFragment"
         android:name="com.sstive39.cycling.WeatherFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        tools:layout="@layout/fragment_weather" />
+        tools:layout="@layout/fragment_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

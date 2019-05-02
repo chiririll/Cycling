@@ -1,12 +1,13 @@
 package com.sstive39.cycling;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
         HomeFragment homeFragment = new HomeFragment();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.pageHolder, homeFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.pageHolder, homeFragment).commit();
+
+        // TODO: Start speedometerService
     }
 
 }

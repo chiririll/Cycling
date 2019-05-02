@@ -76,4 +76,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         paused = !paused;
     }
 
+    public void displayData (long duration, double speed, double distance) {
+        // TODO: Display data
+    }
+
 }
