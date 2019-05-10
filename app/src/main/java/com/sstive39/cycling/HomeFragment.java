@@ -1,20 +1,34 @@
 package com.sstive39.cycling;
 
-
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
-    private boolean start = false;
-    private boolean paused = false;
+    public boolean start = false;
+    public boolean paused = false;
+
     private Button startBtn;
     private Button pauseBtn;
+
+    private TextView nowSpeedText;
+    private TextView maxSpeedText;
+    private TextView avgSpeedText;
+    private TextView distanceText;
+    private TextView durationText;
+
+    private Communicator communicator;
+
+    public interface Communicator {
+        boolean startSpeedometerService();
+        void stopSpeedometerService();
+    }
 
     public HomeFragment() {
         // Required empty public constructor
@@ -27,6 +41,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         startBtn = root.findViewById(R.id.btnStart);
         pauseBtn = root.findViewById(R.id.btnPause);
+
+        nowSpeedText = root.findViewById(R.id.nowSpeed);
+        maxSpeedText = root.findViewById(R.id.nowMaxSpeed);
+        avgSpeedText = root.findViewById(R.id.avgSpeed);
+        distanceText = root.findViewById(R.id.nowDistance);
+        durationText = root.findViewById(R.id.nowDuration);
+
         startBtn.setOnClickListener(this);
         pauseBtn.setOnClickListener(this);
 
@@ -37,47 +58,68 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick (View v) {
         switch (v.getId()) {
             case R.id.btnStart:
-                start();
+                if (!start) {
+                    if (!communicator.startSpeedometerService()) return;
+                    start();
+                } else
+                    stop();
                 break;
             case R.id.btnPause:
-                pause();
+                if (paused) {
+                    resume();
+                } else
+                    pause();
                 break;
         }
     }
 
     public void start () {
-        if (start) {
-            // Stopping (set text&color start)
-            startBtn.setText(getString(R.string.start));
-            startBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnStart));
-            pauseBtn.setVisibility(View.GONE);
-        } else {
-            // Starting (set text&color stop)
-            startBtn.setText(getString(R.string.stop));
-            startBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnStop));
-            pauseBtn.setVisibility(View.VISIBLE);
-        }
+        startBtn.setText(getString(R.string.stop));
+        startBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnStop));
+        pauseBtn.setVisibility(View.VISIBLE);
 
-        start = !start;
-        paused = true;
-        pause();
+        start = true;
+    }
+
+    public void stop () {
+        startBtn.setText(getString(R.string.start));
+        startBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnStart));
+        pauseBtn.setVisibility(View.GONE);
+
+        resume();
+        updateUI("00:00:00", 0, 0, 0, 0);
+        communicator.stopSpeedometerService();
+        start = false;
     }
 
     public void pause () {
-        if (paused) {
-            // Resuming (set text&color pause)
-            pauseBtn.setText(getString(R.string.pause));
-            pauseBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnPause));
-        } else {
-            // Pausing (set text&color resume)
-            pauseBtn.setText(getString(R.string.resume));
-            pauseBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnResume));
-        }
-        paused = !paused;
+        pauseBtn.setText(getString(R.string.resume));
+        pauseBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnResume));
+
+        paused = true;
     }
 
-    public void displayData (long duration, double speed, double distance) {
-        // TODO: Display data
+    public void resume () {
+        pauseBtn.setText(getString(R.string.pause));
+        pauseBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnPause));
+
+        paused = false;
     }
 
+    public void updateUI (String duration, int speed, double distance, int maxSpeed, double avgSpeed) {
+        nowSpeedText.setText(String.valueOf(speed));
+        maxSpeedText.setText(String.valueOf(maxSpeed));
+        avgSpeedText.setText(String.valueOf(avgSpeed));
+        distanceText.setText(String.valueOf(distance));
+        durationText.setText(duration);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach (context);
+        if (context instanceof Communicator)
+            communicator = (Communicator) context;
+        else
+            throw new RuntimeException(context.toString() + "must implement Communicator");
+    }
 }
