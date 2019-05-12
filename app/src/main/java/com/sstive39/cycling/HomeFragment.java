@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         pauseBtn.setVisibility(View.GONE);
 
         resume();
-        updateUI("00:00:00", 0, "0.00", 0, "0.0");
+        updateUI("00:00:00", 0, "0,00", 0, "0,0");
         if (stopService)
             communicator.stopSpeedometerService();
         start = false;

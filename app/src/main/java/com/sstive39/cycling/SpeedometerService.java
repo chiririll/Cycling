@@ -106,7 +106,7 @@ public class SpeedometerService extends Service {
         duration /= 60;
         h = duration;
 
-        this.duration = String.format("%02i:%02i:%02i", h, m, s);
+        this.duration = String.format("%02d:%02d:%02d", h, m, s);
 
         MainActivity.homeFragment.updateUI(this.duration, speed, String.format("%.2f", distance/1000), maxSpeed, String.format("%.1f", speedSum/speedCount));
 
@@ -130,6 +130,7 @@ public class SpeedometerService extends Service {
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
         startTime = System.currentTimeMillis()/1000;
+        countValues();
     }
 
     @Override
