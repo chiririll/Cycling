@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     if (!communicator.startSpeedometerService()) return;
                     start();
                 } else
-                    stop();
+                    stop(true);
                 break;
             case R.id.btnPause:
                 if (paused) {
@@ -81,14 +81,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         start = true;
     }
 
-    public void stop () {
+    public void stop (boolean stopService) {
         startBtn.setText(getString(R.string.start));
         startBtn.setBackgroundColor(getResources().getColor(R.color.colorBtnStart));
         pauseBtn.setVisibility(View.GONE);
 
         resume();
-        updateUI("00:00:00", 0, 0, 0, 0);
-        communicator.stopSpeedometerService();
+        updateUI("00:00:00", 0, "0.00", 0, "0.0");
+        if (stopService)
+            communicator.stopSpeedometerService();
         start = false;
     }
 
@@ -106,11 +107,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         paused = false;
     }
 
-    public void updateUI (String duration, int speed, double distance, int maxSpeed, double avgSpeed) {
+    public void updateUI (String duration, int speed, String distance, int maxSpeed, String avgSpeed) {
         nowSpeedText.setText(String.valueOf(speed));
         maxSpeedText.setText(String.valueOf(maxSpeed));
-        avgSpeedText.setText(String.valueOf(avgSpeed));
-        distanceText.setText(String.valueOf(distance));
+        avgSpeedText.setText(avgSpeed);
+        distanceText.setText(distance);
         durationText.setText(duration);
     }
 

@@ -14,6 +14,8 @@ public class DialogActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        MainActivity.homeFragment.stop(true);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder .setMessage(R.string.request_gps_on)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -27,7 +29,6 @@ public class DialogActivity extends Activity {
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        MainActivity.homeFragment.stop();
                         finish();
                     }
                 });

@@ -1,12 +1,10 @@
 package com.sstive39.cycling;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -14,13 +12,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
-
-import java.sql.Time;
 
 import static com.sstive39.cycling.App.CHANNEL_ID;
 
@@ -31,12 +25,12 @@ public class SpeedometerService extends Service {
     private Location lStart = null, lEnd = null;
 
     private long startTime;
-    private int duration = 0;
-    private double distance = 0;
+    private String duration;
     private int speed;
-    private double speedSum = 0;
     private int speedCount = 1;
     private int maxSpeed = 0;
+    private double distance = 0;
+    private double speedSum = 0;
     private boolean paused = false;
 
     LocationListener locationListener = new LocationListener() {
@@ -46,7 +40,6 @@ public class SpeedometerService extends Service {
             if (lStart == null)
                 lStart = location;
             countValues();
-            MainActivity.homeFragment.updateUI(String.valueOf(duration), speed, distance, maxSpeed, speedSum / speedCount);
             lStart = lEnd;
         }
 
@@ -95,14 +88,27 @@ public class SpeedometerService extends Service {
 
     private void countValues () {
 
-        speed = Math.round(lEnd.getSpeed() * 18 / 5);
-        speedSum += speed;
-        speedCount++;
-        if (speed > maxSpeed) maxSpeed = speed;
+        if (lStart != null && lEnd != null) {
+            speed = Math.round(lEnd.getSpeed() * 18 / 5);
+            speedSum += speed;
+            speedCount++;
+            if (speed > maxSpeed) maxSpeed = speed;
 
-        distance += lStart.distanceTo(lEnd);
+            distance += lStart.distanceTo(lEnd);
+        }
 
-        duration = (int) Math.floor(System.currentTimeMillis()/1000 - startTime);
+        int duration = (int) Math.floor(System.currentTimeMillis()/1000 - startTime);
+        int h, m, s;
+
+        s = duration % 60;
+        duration /= 60;
+        m = duration % 60;
+        duration /= 60;
+        h = duration;
+
+        this.duration = String.format("%02i:%02i:%02i", h, m, s);
+
+        MainActivity.homeFragment.updateUI(this.duration, speed, String.format("%.2f", distance/1000), maxSpeed, String.format("%.1f", speedSum/speedCount));
 
         saveData();
     }
@@ -128,6 +134,6 @@ public class SpeedometerService extends Service {
 
     @Override
     public void onDestroy() {
-        MainActivity.homeFragment.stop();
+        locationManager.removeUpdates(locationListener);
     }
 }
